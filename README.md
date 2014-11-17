@@ -15,7 +15,7 @@ A collection of tools for easily integrating Bootstrap components into CodeIgnit
 A **view** which outputs HTML. Accepts:
 
 * **items**: an array containing the crumbs.  Each item should be a key-value pairs of strings:
-  * *key*: the URL the crumb should link to.  Basic strings are run through `site_url()`, while page anchors (`#inpage-anchor`) and external links are left alone.
+  * *key*: the URL the crumb should link to.  Basic strings are run through `site_url()`, while #page_anchors and external links are left alone.
   * *value*: the visible area of the crumb.  Can contain HTML.
 
 
