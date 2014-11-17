@@ -12,27 +12,20 @@ A collection of tools for easily integrating Bootstrap components into CodeIgnit
 ## Usage
 
 ### Breadcrumbs
-#####<sup>[(official docs)](http://getbootstrap.com/components/#breadcrumbs)</sup>
 A **view** which outputs HTML. Accepts:
 
-* **`items`**: an array containing the crumbs, where keys are the anchor URL and the values are the label, which can also contain any HTML.
+* **items**: an array containing the crumbs.  Each item should be a key-value pairs of strings:
+  * *key*: the URL the crumb should link to.  Basic strings are run through `site_url()`, while page anchors (`#inpage-anchor`) and external links are left alone.
+  * *value*: the visible area of the crumb.  Can contain HTML.
 
 
 ##### Example:
 ```php
 $this->load->view('bootstrap/breadcrumbs', array(
 	'items' => array(
-		// Blank links correspond to the homepage
 		'' => 'Home',
-
-		// anchors are left untouched
-		'#library' => 'Library',
-
-		// strings without "http" are run through "site_url()"
-		'data' => 'Data',
-
-		// the last link doesn't need a URL since it's always considered active
-		'This Page',
-	),
+		'library' => 'Library',
+		'data' => 'Data'
+	)
 ));
 ```
