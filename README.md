@@ -1,4 +1,4 @@
-php-bootstrap
+ci-bootstrap
 =============
 
-Generate Bootstrap components in an object-oriented fashion
+A collection of tools for easily integrating Bootstrap components into CodeIgniter projects.
