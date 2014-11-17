@@ -6,7 +6,7 @@ A collection of tools for easily integrating Bootstrap components into CodeIgnit
 
 ## Installation
 
-1. Copy the `/application/views/bootstrap/` folder into your own CodeIgniter's `application/` folder.
+1. Copy the `/application/views/bootstrap/` folder into your own CodeIgniter's `application/views` folder.
 
 
 ## Usage
@@ -28,4 +28,13 @@ $this->load->view('bootstrap/breadcrumbs', array(
 		'data' => 'Data'
 	)
 ));
+```
+##### Outputs:
+```html
+<ol class="breadcrumb">
+	<li><a href="http://{{your_url}}/index.php">Home</a></li>
+	<li><a href="#library">Library</a></li>
+	<li><a href="http://{{your_url}}/index.php/data">Data</a></li>
+	<li class="active">This Page</li>
+</ol>
 ```
