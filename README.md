@@ -18,7 +18,7 @@ A collection of tools for easily integrating Bootstrap components into CodeIgnit
 $this->load->view('bootstrap/breadcrumbs', array(
 	'items' => array(
 		// Blank links correspond to the homepage
-		'' => array('Home'),
+		'' => 'Home',
 
 		// anchors are left untouched
 		'#library' => 'Library',
