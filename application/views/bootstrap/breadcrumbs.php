@@ -40,13 +40,11 @@ foreach($aPassedItems as $k => $v)
 	}
 
 	
-	if(strpos($sUrl, '#') === 0)
+	if(strpos($sUrl, '#') === 0) // if the URL begins with #, let it pass
 	{
-		// if the URL begins with #, let it pass
 	}
-	elseif(strpos($sUrl, 'http') !== 0)
+	elseif(strpos($v, '://') === FALSE) // if it isn't an external URL, run it through site_url()
 	{
-		// if the URL doesn't begin with 'http', assume it's local and use site_url
 		$this->load->helper('url');
 
 		$sUrl = site_url($sUrl);
