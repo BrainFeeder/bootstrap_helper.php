@@ -25,7 +25,6 @@ if(!function_exists('bs_container_open'))
 	{
 		$aAttr = array(
 			'class' => 'container' . ($bFluid ? '-fluid' : ''),
-			'aria-hidden' => 'true',
 		);
 		return '<div' . _attributes_to_string($aAttr) . '>';
 	}
@@ -72,7 +71,12 @@ if(!function_exists('bs_col_open'))
 		{
 			foreach($mColClasses as $k => $v)
 			{
-				$mColClasses[$k] = 'col-' . $v;
+				// Add 'col-' to this class if it isn't there already
+				if(substr($v, 0, 4) !== 'col-') {
+					$v = 'col-' . $v;
+				}
+
+				$mColClasses[$k] = $v;
 			}
 		}
 
@@ -88,6 +92,40 @@ if(!function_exists('bs_col_close'))
 	function bs_col_close()
 	{
 		return '</div>';
+	}
+}
+
+if(!function_exists('bs_clearfix'))
+{
+	function bs_clearfix($mColClasses = '')
+	{
+		if(is_string($mColClasses))
+		{			
+			$mColClasses = array_filter(explode(' ', $mColClasses));
+		}
+
+		if(count($mColClasses))
+		{
+			foreach($mColClasses as $k => $v)
+			{
+				// Prepend 'visible-' to this class if it isn't there already
+				if(substr($v, 0, 8) !== 'visible-') {
+					$v = 'visible-' . $v;
+				}
+
+				// Append '-block' to this class if it isn't there already
+				if(substr($v, -6) !== '-block') {
+					$v = $v . '-block';
+				}
+
+				$mColClasses[$k] = $v;
+			}
+		}
+
+		$aAttr = array(
+			'class' => 'clearfix ' . implode(' ', $mColClasses),
+		);
+		return '<div' . _attributes_to_string($aAttr) . '></div>';
 	}
 }
 
