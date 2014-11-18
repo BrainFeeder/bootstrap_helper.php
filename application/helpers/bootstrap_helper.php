@@ -58,6 +58,39 @@ if(!function_exists('bs_row_close'))
 	}
 }
 
+if(!function_exists('bs_col_open'))
+{
+	function bs_col_open($mColClasses = '')
+	{
+		// split into pieces (space-separated), prepend "col-" to each, and
+		// reattach them to this column's "class"
+		if(is_string($mColClasses))
+		{			
+			$mColClasses = array_filter(explode(' ', $mColClasses));
+		}
+		if(count($mColClasses))
+		{
+			foreach($mColClasses as $k => $v)
+			{
+				$mColClasses[$k] = 'col-' . $v;
+			}
+		}
+
+		$aAttr = array(
+			'class' => implode(' ', $mColClasses),
+		);
+		return '<div' . _attributes_to_string($aAttr) . '>';
+	}
+}
+
+if(!function_exists('bs_col_close'))
+{
+	function bs_col_close()
+	{
+		return '</div>';
+	}
+}
+
 
 /* End of file bootstrap_helper.php */
 /* Location: ./application/helpers/bootstrap_helper.php */
