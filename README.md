@@ -6,7 +6,7 @@ A collection of tools for easily integrating Bootstrap components into CodeIgnit
 
 ## Installation
 
-1. Copy the `/application/views/bootstrap/` folder into your own CodeIgniter's `application/views` folder.
+Copy the contents of `/application` into your own CodeIgniter's application folder.  Only [views](http://www.codeigniter.com/user_guide/general/views.html) and a [helper](http://www.codeigniter.com/user_guide/general/helpers.html) are included with this package.
 
 
 ## Usage
