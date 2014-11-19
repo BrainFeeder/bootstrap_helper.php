@@ -20,6 +20,49 @@ if(!function_exists('bs_icon'))
 	}
 }
 
+if(!function_exists('bs_button'))
+{
+	function bs_button($sUrl = FALSE, $sLabel = '', $mButtonClasses = 'btn-link', $aUserAttr = array())
+	{
+		$bAnchor = ($sUrl ? TRUE : FALSE);
+
+		if(is_string($mButtonClasses))
+		{			
+			$mButtonClasses = array_filter(explode(' ', $mButtonClasses));
+		}
+
+		if(count($mButtonClasses))
+		{
+			foreach($mButtonClasses as $k => $v)
+			{
+				// Add 'btn-' to this class if it isn't there already
+				if(substr($v, 0, 4) !== 'btn-') {
+					$v = 'btn-' . $v;
+				}
+
+				$mButtonClasses[$k] = $v;
+			}
+		}
+
+		$aAttr = array(
+			'class' => 'btn ' . implode(' ', $mButtonClasses),
+		);
+
+		$sTag = 'button';
+
+		if($bAnchor)
+		{
+			// if this is a link, use an anchor tag and insert the URL as its href
+			$sTag = 'a';
+			$aAttr = array_merge($aAttr, array(
+				'href' => $sUrl,
+			));
+		}
+
+		return '<' . $sTag . _bs_attributes_to_string($aAttr, $aUserAttr) . '>' . $sLabel . '</' . $sTag . '>';
+	}
+}
+
 if(!function_exists('bs_container_open'))
 {
 	function bs_container_open($bFluid = FALSE, $aUserAttr = array())
