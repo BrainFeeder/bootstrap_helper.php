@@ -7,31 +7,6 @@ $CI =& get_instance();
  // we use the CI form helper's _attributes_to_string()
 $CI->load->helper('form');
 
-if(!function_exists('_bs_attributes_to_string'))
-{
-	// Merges in a secondary array of user variables,
-	// then uses the CI form helper.
-	function _bs_attributes_to_string($aAttr, $aUserAttr)
-	{
-		$aMergedAttr = $aAttr; // will get sent if $aUserAttr is empty
-
-		if(count($aUserAttr))
-		{
-			// if both arrays sent classes, concatenate them instead of
-			// overwriting one with the other
-			if(isset($aUserAttr['class']) && isset($aAttr['class']))
-			{
-				// Merge both classes into the array with precedence
-				$aUserAttr['class'] = $aAttr['class'].' '.$aUserAttr['class'];
-			}
-			$aMergedAttr = array_merge($aAttr, $aUserAttr); // merge in any passed attributes
-			
-		}
-
-		return _attributes_to_string($aMergedAttr);
-	}
-}
-
 if(!function_exists('bs_icon'))
 {
 	function bs_icon($sIcon = FALSE, $aUserAttr = array())
@@ -152,6 +127,31 @@ if(!function_exists('bs_clearfix'))
 			'class' => 'clearfix ' . implode(' ', $mColClasses),
 		);
 		return '<div' . _bs_attributes_to_string($aAttr, $aUserAttr) . '></div>';
+	}
+}
+
+if(!function_exists('_bs_attributes_to_string'))
+{
+	// Merges in a secondary array of user variables,
+	// then uses the CI form helper.
+	function _bs_attributes_to_string($aAttr, $aUserAttr)
+	{
+		$aMergedAttr = $aAttr; // will get sent if $aUserAttr is empty
+
+		if(count($aUserAttr))
+		{
+			// if both arrays sent classes, concatenate them instead of
+			// overwriting one with the other
+			if(isset($aUserAttr['class']) && isset($aAttr['class']))
+			{
+				// Merge both classes into the array with precedence
+				$aUserAttr['class'] = $aAttr['class'].' '.$aUserAttr['class'];
+			}
+			$aMergedAttr = array_merge($aAttr, $aUserAttr); // merge in any passed attributes
+			
+		}
+
+		return _attributes_to_string($aMergedAttr);
 	}
 }
 
