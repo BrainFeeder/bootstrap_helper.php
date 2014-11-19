@@ -63,6 +63,99 @@ if(!function_exists('bs_button'))
 	}
 }
 
+if(!function_exists('bs_dropdown'))
+{
+	function bs_dropdown($sLabel = '', $aItems = array(), $mButtonClasses = 'default', $mSplitAttr = FALSE)
+	{
+		$s = ''; // the return string
+		$bSplit = ($mSplitAttr != FALSE); // is this is a split button?
+		$sCaret = '<div class="caret"></div>';
+		$sToggleLabel = $sLabel;
+		$aLI = array();
+		$aListAttr = array(
+			'class' => 'dropdown-menu',
+			'role' => 'menu',
+		);
+
+		$sSplitURL = FALSE;
+		$aSplitAttr = array();
+
+		if($bSplit) {
+			$sToggleLabel = $sCaret;
+
+			if(is_string($mSplitAttr))
+			{
+				$sSplitURL = $mSplitAttr;
+			}
+			elseif(is_object($mSplitAttr) || is_array($mSplitAttr))
+			{
+				$aSplitAttr = (array) $mSplitAttr;
+			}
+		} else {
+			$sToggleLabel .= ' '.$sCaret;
+		}
+
+		if(count($aItems))
+		{
+			foreach($aItems as $k => $v)
+			{
+				if(is_string($v) && preg_match('/^\-+$/', $v))
+				{
+					// It's a divider
+					$aLI[] = '<li' . _bs_attributes_to_string(array(
+						'class' => 'divider',
+						'role' => 'presentation',
+					)) . '></li>';
+				}
+				elseif(is_array($v))
+				{
+					$sHref = (isset($v['href']) ? $v['href'] : '');
+					unset($v['href']);
+
+					if(isset($v['label']))
+					{
+						// If the user has set the 'label' key, use that.
+						$sItemLabel = $v['label'];
+					}
+					else
+					{
+						// otherwise, assume the key is the label.
+						$sItemLabel = $k;
+					}
+
+					$aLI[] = '<li' . _bs_attributes_to_string($v).'>' . $sItemLabel . '</li>';
+				}
+				elseif(is_string($k))
+				{
+					$aLI[] = '<li>' . anchor($k, $v) . '</li>';
+				}
+				else
+				{
+					$aLI[] = '<li>' . $v . '</li>';
+				}
+			}
+		}
+
+		$s .= '<div class="btn-group">';
+		if($bSplit) {
+			$s .= bs_button($sSplitURL, $sLabel, $mButtonClasses);
+		}
+		$s .= bs_button(FALSE, $sToggleLabel, $mButtonClasses, array(
+			'class' => 'dropdown-toggle',
+			'data-toggle' => 'dropdown',
+			'aria-expanded' => 'false',
+		));
+
+		$s .= '<ul' . _bs_attributes_to_string($aListAttr) . '>';
+		$s .= implode('', $aLI);
+		$s .= '</ul>';
+
+		$s .= '</div>';
+
+		return $s;
+	}
+}
+
 if(!function_exists('bs_container_open'))
 {
 	function bs_container_open($bFluid = FALSE, $aUserAttr = array())
