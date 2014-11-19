@@ -22,7 +22,7 @@ if(!function_exists('bs_icon'))
 
 if(!function_exists('bs_button'))
 {
-	function bs_button($sUrl = FALSE, $sLabel = '', $mButtonClasses = 'btn-link', $aUserAttr = array())
+	function bs_button($sUrl = FALSE, $sLabel = '', $mButtonClasses = 'link', $aUserAttr = array())
 	{
 		$bAnchor = ($sUrl ? TRUE : FALSE);
 
@@ -177,7 +177,7 @@ if(!function_exists('_bs_attributes_to_string'))
 {
 	// Merges in a secondary array of user variables,
 	// then uses the CI form helper.
-	function _bs_attributes_to_string($aAttr, $aUserAttr)
+	function _bs_attributes_to_string($aAttr, $aUserAttr = array())
 	{
 		$aMergedAttr = $aAttr; // will get sent if $aUserAttr is empty
 
