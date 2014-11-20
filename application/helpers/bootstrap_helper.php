@@ -20,6 +20,36 @@ if(!function_exists('bs_icon'))
 	}
 }
 
+if(!function_exists('bs_label'))
+{
+	function bs_label($sLabel = '', $mClasses = 'default', $aUserAttr = array())
+	{
+		if(is_string($mClasses))
+		{			
+			$mClasses = array_filter(explode(' ', $mClasses));
+		}
+
+		if(count($mClasses))
+		{
+			foreach($mClasses as $k => $v)
+			{
+				// Add 'btn-' to this class if it isn't there already
+				if(substr($v, 0, 6) !== 'label-') {
+					$v = 'label-' . $v;
+				}
+
+				$mClasses[$k] = $v;
+			}
+		}
+
+		$aAttr = array(
+			'class' => 'label ' . implode(' ', $mClasses),
+		);
+
+		return '<span' . _bs_attributes_to_string($aAttr, $aUserAttr) . '>' . $sLabel . '</span>';
+	}
+}
+
 if(!function_exists('bs_breadcrumbs'))
 {
 	function bs_breadcrumbs($aItems = array())
