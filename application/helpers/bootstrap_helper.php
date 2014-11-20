@@ -20,6 +20,80 @@ if(!function_exists('bs_icon'))
 	}
 }
 
+if(!function_exists('bs_breadcrumbs'))
+{
+	function bs_breadcrumbs($aItems = array())
+	{
+		// $aPassedItems = (isset($items) ? $items : NULL);
+		$CI =& get_instance();
+
+		$s = '';
+		$aPrintItems = array();
+
+		foreach($aItems as $k => $v)
+		{
+			$sUrl = $k;
+			$sLabel = $v;
+
+			if(!is_string($sLabel))
+			{
+				throw new Exception('Passed label must be a string');
+			}
+
+			// if this link is empty, or numeric, 
+			// assume this is a link to the homepage
+			if(empty($sUrl) || is_numeric($sUrl)) {
+				$CI->load->helper('url');
+
+				$sUrl = site_url();
+			}
+
+			
+			if(strpos($sUrl, '#') === 0) // if the URL begins with #, let it pass
+			{
+			}
+			elseif(strpos($v, '://') === FALSE) // if it isn't an external URL, run it through site_url()
+			{
+				$CI->load->helper('url');
+
+				$sUrl = site_url($sUrl);
+			}
+
+			// Add this item to the "to print" array
+			$aPrintItems[] = (object) array(
+				'url' => $sUrl, 
+				'label' => $sLabel,
+			);
+		}
+
+		// output it all
+		$s .= '<ol class="breadcrumb">';
+		foreach($aPrintItems as $i => $oCrumb)
+		{
+
+			// Check if this is the last item
+			$bLast = ($i+1 === count($aPrintItems) ? TRUE : FALSE);
+
+			$s .= '<li' . ($bLast ? ' class="active"' : '') . '>';
+			
+			if($bLast)
+			{
+				$s .= $oCrumb->label;
+			}
+			else
+			{
+				$s .= '<a href="' . $oCrumb->url . '">'. $oCrumb->label . '</a>';
+			}
+				
+			$s .= '</li>';
+		}
+		
+		$s .= '</ol>';
+
+		return $s;
+	}
+}
+
 if(!function_exists('bs_button'))
 {
 	function bs_button($sUrl = FALSE, $sLabel = '', $mButtonClasses = 'link', $aUserAttr = array())
