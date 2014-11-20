@@ -6,9 +6,31 @@ A collection of tools for easily integrating Bootstrap components into CodeIgnit
 
 ## Installation
 
-Copy the contents of `/application` into your own CodeIgniter's application folder.  Only [views](http://www.codeigniter.com/user_guide/general/views.html) and a [helper](http://www.codeigniter.com/user_guide/general/helpers.html) are included with this package.
+Copy the contents of `/application` into your own CodeIgniter's application folder.  Only a [helper](http://www.codeigniter.com/user_guide/general/helpers.html) is included with this package (so far).
 
 
 ## Usage
 
-Visit [the wiki](https://github.com/gp-greg/ci-bootstrap/wiki) to get details on usage.
+Load the helper as needed:
+
+```php
+$this->load->helper('bootstrap');
+```
+
+or globally by editing `/application/autoload.php`:
+
+```php
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Helper Files
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['helper'] = array('url', 'file');
+*/
+
+$autoload['helper'] = array('bootstrap');
+```
+
+> Function documentation to come.
