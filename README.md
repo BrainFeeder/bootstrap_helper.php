@@ -34,15 +34,27 @@ $autoload['helper'] = array('bootstrap');
 ## Usage
 
 ####`bs_icon()`
+-----
 ####`bs_label()`
+-----
 ####`bs_panel()`
+-----
 ####`bs_breadcrumbs()`
+-----
 ####`bs_button()`
+-----
 ####`bs_dropdown()`
+-----
 ####`bs_container_open()`
+-----
 ####`bs_container_close()`
+-----
 ####`bs_row_open()`
+-----
 ####`bs_row_close()`
+-----
 ####`bs_col_open()`
+-----
 ####`bs_col_close()`
+-----
 ####`bs_clearfix()`
