@@ -1,22 +1,24 @@
-ci-bootstrap_helper
+bootstrap_helper.php
 =============
 
-A CodeIgniter helper which generates Bootstrap-specific HTML.
+A [CodeIgniter](http://www.codeigniter.com/) helper which generates [Bootstrap](http://getbootstrap.com/)-specific HTML.
 
 
 ## Installation
 
-Copy the contents of `/application` into your own CodeIgniter's application folder.  Only a [helper](http://www.codeigniter.com/user_guide/general/helpers.html) is included with this package (so far).
+1. [**Download** this repository](https://github.com/gp-greg/bootstrap_helper.php/archive/master.zip) and extract the archive contents.
 
-Load the helper as needed:
+1. **Copy** `bootstrap_helper.php` into your application's `/helpers` folder.
 
-```php
-$this->load->helper('bootstrap');
-```
+2. Either **load** the helper as-needed:
 
-or globally by editing `/application/config/autoload.php`:
+  ```php
+  $this->load->helper('bootstrap');
+  ```
 
-```php
+  **or autoload globally** by editing `/application/config/autoload.php`:
+
+  ```php
 
 /*
 | -------------------------------------------------------------------
@@ -34,7 +36,7 @@ $autoload['helper'] = array('bootstrap');
 ## Usage
 
 ####bs_icon()
-Generates a glyphicon, requiring at least the non-prefixed portion of the icon.
+Generates a [glyphicon](http://getbootstrap.com/components/#glyphicons), requiring at least the non-prefixed portion of the icon.
 ```php
 echo bs_icon('home');
 // <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
@@ -52,6 +54,28 @@ echo bs_icon('home', $attr);
 ---
 
 ####bs_label()
+Generates a [label](http://getbootstrap.com/components/#labels), requiring at least the visible string inside the label.
+```php
+echo bs_label('New');
+// <span class="label label-default">New</span>
+```
+A context class may be passed as the second parameter.
+```php
+echo bs_label('Watch Out', 'danger');
+// <span class="label label-danger">Watch Out</span>
+```
+Additional attributes may be passed in the third parameter.
+```php
+$attr = array(
+  'id' => 'hero_label',
+  'class' => 'pull-right'
+);
+
+echo bs_label('Powerful', FALSE, $attr);
+// <span class="label label-default pull-right" id="hero_label">Powerful</span>
+```
+---
+
 ####bs_panel()
 ####bs_breadcrumbs()
 ####bs_button()
