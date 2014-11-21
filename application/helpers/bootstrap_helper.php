@@ -378,7 +378,7 @@ if(!function_exists('_bs_attributes_to_string'))
 	{
 		$aMergedAttr = $aAttr; // will get sent if $aUserAttr is empty
 
-		if(count($aUserAttr))
+		if(is_array($aUserAttr) && count($aUserAttr))
 		{
 			// if both arrays sent classes, concatenate them instead of
 			// overwriting one with the other
