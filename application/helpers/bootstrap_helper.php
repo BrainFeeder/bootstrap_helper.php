@@ -50,6 +50,33 @@ if(!function_exists('bs_label'))
 	}
 }
 
+if(!function_exists('bs_panel'))
+{
+	function bs_panel($sTitle = '', $sBody = '', $sFooter = '', $aUserAttr = array(), $sContext = 'default', $bSpecialBody = FALSE)
+	{
+		$aAttr = array(
+			'class' => 'panel panel-' . $sContext,
+		);
+
+		if($sTitle)
+		{
+			$sTitle = '<div class="panel-heading">' . $sTitle . '</div>';
+		}
+
+		if($sFooter)
+		{
+			$sFooter = '<div class="panel-footer">' . $sFooter . '</div>';
+		}
+
+		if(!$bSpecialBody)
+		{
+			$sBody = '<div class="panel-body">' . $sBody . '</div>';
+		}
+
+		return '<div' . _bs_attributes_to_string($aAttr, $aUserAttr) . '>' . $sTitle . $sBody . $sFooter . '</div>';
+	}
+}
+
 if(!function_exists('bs_breadcrumbs'))
 {
 	function bs_breadcrumbs($aItems = array())
