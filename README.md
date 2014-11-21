@@ -17,7 +17,7 @@ Load the helper as needed:
 $this->load->helper('bootstrap');
 ```
 
-or globally by editing `/application/autoload.php`:
+or globally by editing `/application/config/autoload.php`:
 
 ```php
 
