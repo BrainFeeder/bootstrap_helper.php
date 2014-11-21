@@ -33,16 +33,16 @@ $autoload['helper'] = array('bootstrap');
 
 ## Usage
 
-####`bs_icon($sIcon, $aUserAttr)`
-####`bs_label($sLabel, $mClasses, $aUserAttr)`
-####`bs_panel($sTitle, $sBody, $sFooter, $aUserAttr, $sContext, $bSpecialBody)`
-####`bs_breadcrumbs($aItems)`
-####`bs_button($sUrl, $sLabel, $mButtonClasses, $aUserAttr)`
-####`bs_dropdown($sLabel, $aItems, $mButtonClasses, $mSplitAttr)`
-####`bs_container_open($bFluid, $aUserAttr)`
+####`bs_icon()`
+####`bs_label()`
+####`bs_panel()`
+####`bs_breadcrumbs()`
+####`bs_button()`
+####`bs_dropdown()`
+####`bs_container_open()`
 ####`bs_container_close()`
-####`bs_row_open($aUserAttr)`
+####`bs_row_open()`
 ####`bs_row_close()`
-####`bs_col_open($mColClasses, $aUserAttr)`
+####`bs_col_open()`
 ####`bs_col_close()`
-####`bs_clearfix($mColClasses, $aUserAttr)`
+####`bs_clearfix()`
