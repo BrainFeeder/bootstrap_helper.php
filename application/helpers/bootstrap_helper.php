@@ -326,6 +326,14 @@ if(!function_exists('bs_container_close'))
 	}
 }
 
+if(!function_exists('bs_container'))
+{
+	function bs_container($bFluid = FALSE, $sContent = '', $aUserAttr = array())
+	{
+		return bs_container_open($bFluid, $aUserAttr) . $sContent . bs_container_close();
+	}
+}
+
 if(!function_exists('bs_row_open'))
 {
 	function bs_row_open($aUserAttr = array())
@@ -342,6 +350,14 @@ if(!function_exists('bs_row_close'))
 	function bs_row_close()
 	{
 		return '</div>';
+	}
+}
+
+if(!function_exists('bs_row'))
+{
+	function bs_row($sContent = '', $aUserAttr = array())
+	{
+		return bs_row_open($aUserAttr) . $sContent . bs_row_close();
 	}
 }
 
@@ -380,6 +396,14 @@ if(!function_exists('bs_col_close'))
 	function bs_col_close()
 	{
 		return '</div>';
+	}
+}
+
+if(!function_exists('bs_col'))
+{
+	function bs_col($mColClasses = '', $sContent = '', $aUserAttr = array())
+	{
+		return bs_col_open($mColClasses, $aUserAttr) . $sContent . bs_col_close();
 	}
 }
 
