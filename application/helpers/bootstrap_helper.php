@@ -22,8 +22,13 @@ if(!function_exists('bs_icon'))
 
 if(!function_exists('bs_label'))
 {
-	function bs_label($sLabel = '', $mClasses = 'default', $aUserAttr = array())
+	function bs_label($sLabel = '', $mClasses = FALSE, $aUserAttr = array())
 	{
+		if(!$mClasses)
+		{
+			$mClasses = 'default';
+		}
+
 		if(is_string($mClasses))
 		{			
 			$mClasses = array_filter(explode(' ', $mClasses));
@@ -52,8 +57,13 @@ if(!function_exists('bs_label'))
 
 if(!function_exists('bs_panel'))
 {
-	function bs_panel($sTitle = '', $sBody = '', $sFooter = '', $aUserAttr = array(), $sContext = 'default', $bSpecialBody = FALSE)
+	function bs_panel($sTitle = '', $sBody = '', $sFooter = '', $aUserAttr = array(), $sContext = FALSE, $bSpecialBody = FALSE)
 	{
+		if(!$sContext)
+		{
+			$sContext = 'default';
+		}
+
 		$aAttr = array(
 			'class' => 'panel panel-' . $sContext,
 		);
@@ -153,9 +163,14 @@ if(!function_exists('bs_breadcrumbs'))
 
 if(!function_exists('bs_button'))
 {
-	function bs_button($sUrl = FALSE, $sLabel = '', $mButtonClasses = 'link', $aUserAttr = array())
+	function bs_button($sUrl = FALSE, $sLabel = '', $mButtonClasses = FALSE, $aUserAttr = array())
 	{
 		$bAnchor = ($sUrl ? TRUE : FALSE);
+
+		if(!$mButtonClasses)
+		{
+			$mButtonClasses = 'link';
+		}
 
 		if(is_string($mButtonClasses))
 		{			
@@ -196,8 +211,13 @@ if(!function_exists('bs_button'))
 
 if(!function_exists('bs_dropdown'))
 {
-	function bs_dropdown($sLabel = '', $aItems = array(), $mButtonClasses = 'default', $mSplitAttr = FALSE)
+	function bs_dropdown($sLabel = '', $aItems = array(), $mButtonClasses = FALSE, $mSplitAttr = FALSE)
 	{
+		if(!$mButtonClasses)
+		{
+			$mButtonClasses = 'default';
+		}
+
 		$s = ''; // the return string
 		$bSplit = ($mSplitAttr != FALSE); // is this is a split button?
 		$sCaret = '<div class="caret"></div>';
