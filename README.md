@@ -45,6 +45,7 @@ $attr = array(
   'class' => 'text-primary',
   'id' => 'upload_now',
 );
+
 echo bs_icon('home', $attr);
 // <span class="glyphicon glyphicon-home text-primary" aria-hidden="true" id="upload_now"></span>
 ```
