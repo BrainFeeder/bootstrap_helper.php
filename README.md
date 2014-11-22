@@ -35,7 +35,7 @@ $autoload['helper'] = array('bootstrap');
 
 ## Usage
 
-####bs_icon()
+###bs_icon()
 Generates a [glyphicon](http://getbootstrap.com/components/#glyphicons), requiring at least the non-prefixed portion of the icon.
 ```php
 echo bs_icon('home');
@@ -53,7 +53,7 @@ echo bs_icon('home', $attr);
 ```
 ---
 
-####bs_label()
+###bs_label()
 Generates a [label](http://getbootstrap.com/components/#labels), requiring at least the visible string inside the label.
 ```php
 echo bs_label('New');
@@ -76,7 +76,7 @@ echo bs_label('Powerful', FALSE, $attr);
 ```
 ---
 
-####bs_panel()
+###bs_panel()
 Generates a [panel](http://getbootstrap.com/components/#panels), accepting the title, body, and footer as the first three parameters.
 ```php
 echo bs_panel(FALSE, 'This panel just has a footer.', "Why can't I just <em>be</em>?");
@@ -93,7 +93,7 @@ The sixth and final parameter should be `TRUE` if the user has passed in a table
 
 ---
 
-####bs_breadcrumbs()
+###bs_breadcrumbs()
 Generates [breadcrumbs](http://getbootstrap.com/components/#breadcrumbs).  The first and only parameter should be a key-value pairs of strings:
 * *key*: the URL the crumb should link to.  Basic strings are run through [`site_url()`](http://www.codeigniter.com/user_guide/helpers/url_helper.html), while #page_anchors and external links are left alone.
 * *value*: the visible area of the crumb.  Can contain HTML.
@@ -116,9 +116,9 @@ echo bs_breadcrumbs(array(
 ```
 The last list item will not be linked, and will take the "active" class.
 
-####bs_button()
-####bs_dropdown()
-####bs_container()
-####bs_row()
-####bs_col()
-####bs_clearfix()
+###bs_button()
+###bs_dropdown()
+###bs_container()
+###bs_row()
+###bs_col()
+###bs_clearfix()
