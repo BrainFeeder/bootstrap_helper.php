@@ -103,9 +103,7 @@ echo bs_panel('Standout Panel', 'Ooh, what is that?', FALSE, array('id' => 'cool
 	<div class="panel-body">Ooh, what is that?</div>
 </div>
 ```
-The sixth and final parameter should be `TRUE` if the user has passed in a table or list group as the body (see the [official](http://getbootstrap.com/components/#panels-tables) [docs](http://getbootstrap.com/components/#panels-list-group)) for a seamless panel.
-
-**NOTE**: if you still want to pass in regular panel content, you'll need to wrap it in `<div class="panel-body"></div>` yourself.
+The sixth and final parameter should be `TRUE` if the user has passed in a table or list group as the body (see the [official](http://getbootstrap.com/components/#panels-tables) [docs](http://getbootstrap.com/components/#panels-list-group)) for a seamless panel.  **NOTE**: if you still want to pass in regular panel content, you'll need to wrap it in `<div class="panel-body"></div>` yourself.
 
 ---
 
