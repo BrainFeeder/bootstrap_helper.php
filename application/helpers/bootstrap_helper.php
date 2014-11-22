@@ -458,7 +458,7 @@ if(!function_exists('_bs_attributes_to_string'))
 			if(isset($aUserAttr['class']) && isset($aAttr['class']))
 			{
 				// Merge both classes into the array with precedence
-				$aUserAttr['class'] = $aAttr['class'].' '.$aUserAttr['class'];
+				$aUserAttr['class'] = trim($aAttr['class'].' '.$aUserAttr['class'], ' ');
 			}
 			$aMergedAttr = array_merge($aAttr, $aUserAttr); // merge in any passed attributes
 			
