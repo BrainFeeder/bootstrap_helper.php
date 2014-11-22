@@ -86,12 +86,22 @@ echo bs_label('Powerful', FALSE, $attr);
 Generates a [panel](http://getbootstrap.com/components/#panels), accepting the title, body, and footer as the first three parameters.
 ```php
 echo bs_panel(FALSE, 'This panel just has a footer.', "Why can't I just <em>be</em>?");
-// [GREG ADD OUTPUT]
+```
+```html
+<div class="panel panel-default">
+	<div class="panel-body">This panel just has a footer.</div>
+	<div class="panel-footer">Why can't I just <em>be</em>?</div>
+</div>
 ```
 The fourth parameter can contain any attributes to be applied to the main panel `<div>`.  The fifth can be used to specify the context (primary, success, info, warning, or danger).
 ```php
-echo bs_panel('Standout Panel', 'Ooh, what is that?', FALSE, 'primary');
-// [GREG ADD OUTPUT]
+echo bs_panel('Standout Panel', 'Ooh, what is that?', FALSE, array('id' => 'cool_panel'), 'primary');
+```
+```html
+<div class="panel panel-primary" id="cool_panel">
+	<div class="panel-heading">Standout Panel</div>
+	<div class="panel-body">Ooh, what is that?</div>
+</div>
 ```
 The sixth and final parameter should be `TRUE` if the user has passed in a table or list group as the body (see the [official](http://getbootstrap.com/components/#panels-tables) [docs](http://getbootstrap.com/components/#panels-list-group)) for a seamless panel.
 
