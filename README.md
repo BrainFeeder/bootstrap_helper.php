@@ -36,6 +36,9 @@ $autoload['helper'] = array('bootstrap');
 ## Usage
 
 ###bs_icon()
+```php
+string bs_icon ( string $icon [, array $attributes ] )
+```
 Generates a [glyphicon](http://getbootstrap.com/components/#glyphicons), requiring at least the non-prefixed portion of the icon.
 ```php
 echo bs_icon('home');
@@ -54,6 +57,9 @@ echo bs_icon('home', $attr);
 ---
 
 ###bs_label()
+```php
+string bs_icon ( string $text [, string $context_class = 'default' [, array $attributes ]] )
+```
 Generates a [label](http://getbootstrap.com/components/#labels), requiring at least the visible string inside the label.
 ```php
 echo bs_label('New');
