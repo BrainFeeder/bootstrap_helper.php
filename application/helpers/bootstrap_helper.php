@@ -204,7 +204,7 @@ if(!function_exists('bs_button'))
 
 if(!function_exists('bs_dropdown'))
 {
-	function bs_dropdown($sLabel = '', $aItems = array(), $mButtonClasses = FALSE, $mSplitAttr = FALSE)
+	function bs_dropdown($sLabel = '', $aItems = array(), $mButtonClasses = FALSE, $mSplitAttr = FALSE, $bNavMode = FALSE)
 	{
 		if(!$mButtonClasses)
 		{
@@ -241,50 +241,49 @@ if(!function_exists('bs_dropdown'))
 
 		if(count($aItems))
 		{
+			$aDefaultAttr = array(
+				'role' => 'presentation',
+			);
+
 			foreach($aItems as $k => $v)
 			{
 				if(is_string($v) && preg_match('/^\-+$/', $v))
 				{
 					// It's a divider
-					$aLI[] = '<li' . _bs_attributes_to_string(array(
+					$aLI[] = '<li' . _bs_attributes_to_string($aDefaultAttr, array(
 						'class' => 'divider',
-						'role' => 'presentation',
 					)) . '></li>';
 				}
 				elseif(is_array($v))
 				{
-					$sHref = (isset($v['href']) ? $v['href'] : '');
-					unset($v['href']);
+					$CI =& get_instance();
 
-					if(isset($v['label']))
+					$CI->load->helper('html');
+					$sItemLabel = (isset($v['label']) ? $v['label'] : $k);
+					unset($v['label']);
+
+					if(!is_numeric($k))
 					{
-						// If the user has set the 'label' key, use that.
-						$sItemLabel = $v['label'];
-					}
-					else
-					{
-						// otherwise, assume the key is the label.
-						$sItemLabel = $k;
+						$sItemLabel = anchor($k, $sItemLabel);
 					}
 
-					$aLI[] = '<li' . _bs_attributes_to_string($v).'>' . $sItemLabel . '</li>';
+					$aLI[] = '<li' . _bs_attributes_to_string($aDefaultAttr, $v).'>' . $sItemLabel . '</li>';
 				}
 				elseif(is_string($k))
 				{
-					$aLI[] = '<li>' . anchor($k, $v) . '</li>';
+					$aLI[] = '<li' . _bs_attributes_to_string($aDefaultAttr).'>' . anchor($k, $v) . '</li>';
 				}
 				else
 				{
-					$aLI[] = '<li>' . $v . '</li>';
+					$aLI[] = '<li' . _bs_attributes_to_string($aDefaultAttr).'>' . $v . '</li>';
 				}
 			}
 		}
 
-		$s .= '<div class="btn-group">';
 		if($bSplit) {
 			$s .= bs_button($sSplitURL, $sLabel, $mButtonClasses);
 		}
-		$s .= bs_button(FALSE, $sToggleLabel, $mButtonClasses, array(
+		$s .= bs_button(($bNavMode ? '#' : FALSE), $sToggleLabel, ($bNavMode ? NULL : $mButtonClasses), array(
 			'class' => 'dropdown-toggle',
 			'data-toggle' => 'dropdown',
 			'aria-expanded' => 'false',
@@ -294,7 +293,10 @@ if(!function_exists('bs_dropdown'))
 		$s .= implode('', $aLI);
 		$s .= '</ul>';
 
-		$s .= '</div>';
+		if(!$bNavMode)
+		{
+			$s = '<div class="btn-group">' . $s . '</div>';
+		}
 
 		return $s;
 	}
@@ -446,7 +448,7 @@ if(!function_exists('_bs_attributes_to_string'))
 
 		 // we use the CI form helper's _attributes_to_string()
 		$CI->load->helper('form');
-		
+
 		$aMergedAttr = $aAttr; // will get sent if $aUserAttr is empty
 
 		if(is_array($aUserAttr) && count($aUserAttr))
