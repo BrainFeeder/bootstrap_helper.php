@@ -94,6 +94,28 @@ The sixth and final parameter should be `TRUE` if the user has passed in a table
 ---
 
 ####bs_breadcrumbs()
+Generates [breadcrumbs](http://getbootstrap.com/components/#breadcrumbs).  The first and only parameter should be a key-value pairs of strings:
+* *key*: the URL the crumb should link to.  Basic strings are run through [`site_url()`](http://www.codeigniter.com/user_guide/helpers/url_helper.html), while #page_anchors and external links are left alone.
+* *value*: the visible area of the crumb.  Can contain HTML.
+
+```php
+echo bs_breadcrumbs(array(
+	'' => 'Home',
+	'#library' => 'Library',
+	'data' => 'Data',
+	'This Page'
+));
+```
+```html
+<ol class="breadcrumb">
+	<li><a href="http://{{your_url}}/index.php">Home</a></li>
+	<li><a href="#library">Library</a></li>
+	<li><a href="http://{{your_url}}/index.php/data">Data</a></li>
+	<li class="active">This Page</li>
+</ol>
+```
+The last list item will not be linked, and will take the "active" class.
+
 ####bs_button()
 ####bs_dropdown()
 ####bs_container()
