@@ -154,11 +154,129 @@ if(!function_exists('bs_breadcrumbs'))
 	}
 }
 
+if(!function_exists('bs_nav'))
+{
+	function bs_nav($aItems = array(), $mClasses = FALSE, $mActiveLink = TRUE)
+	{
+		$CI =& get_instance();
+		if($mActiveLink === TRUE) // look at the current page URL
+		{
+			$CI->load->helper('url');
+			
+			$mActiveLink = site_url($CI->uri->uri_string());
+		}
+		elseif(strpos($mActiveLink, '://') === FALSE) // if it isn't a fully-qualified URL, run it through site_url()
+		{
+			$CI->load->helper('url');
+
+			$mActiveLink = site_url($mActiveLink);
+		}
+
+		if(!$mClasses)
+		{
+			$mClasses = 'tabs';
+		}
+
+		if(is_string($mClasses))
+		{			
+			$mClasses = array_filter(explode(' ', $mClasses));
+		}
+
+		if(count($mClasses))
+		{
+			foreach($mClasses as $k => $v)
+			{
+				// Add 'nav-' to this class if it isn't there already
+				if(substr($v, 0, 4) !== 'nav-') {
+					$v = 'nav-' . $v;
+				}
+
+				$mClasses[$k] = $v;
+			}
+		}
+
+		$aAttr = array(
+			'class' => 'nav ' . implode(' ', $mClasses),
+		);
+
+		$sLI = '';
+
+		foreach($aItems as $k => $v)
+		{
+			$sUrl = $k;
+			$sLabel = $v;
+			$aItemAttr = array(
+				'role' => 'presentation',
+				'class' => '', // empty so we can add to it as-needed
+			);
+			$aUserAttr = array();
+			
+			if(is_string($v) && strpos($v, '://') === FALSE) // if it isn't a fully-qualified URL, run it through site_url()
+			{
+				$CI->load->helper('url');
+
+				$sUrl = site_url($sUrl);
+			}
+
+			if(is_array($v))
+			{
+				$aItemAttr['class'] .= ' dropdown';
+				$sLabel = bs_dropdown($k, $v, FALSE, FALSE, TRUE);
+				$sUrl = FALSE;
+
+				if(is_string($mActiveLink) && count($v))
+				{
+					foreach($v as $kk => $vv)
+					{
+						$sHref = FALSE;
+						if(is_string($vv) && preg_match('/^\-+$/', $vv))
+						{
+							// this is a separator so do nothing
+						}
+						elseif(strpos($kk, '://') === FALSE)
+						{
+							// die($kk);
+							$CI->load->helper('url');
+						
+							$sHref = site_url($kk);
+						}
+						else
+						{
+							$sHref = $kk;
+						}
+
+						if($mActiveLink === $sHref)
+						{
+							$aItemAttr['class'] .= ' active';
+						}
+					}
+				}
+			}
+			else
+			{
+				$sLabel = anchor($sUrl, $sLabel);
+
+				if(is_string($mActiveLink) && $sUrl === $mActiveLink)
+				{
+					$aItemAttr['class'] .= ' active';
+				}
+			}
+
+
+
+			$sLI .= '<li' . _bs_attributes_to_string($aItemAttr, $aUserAttr) . '>' . $sLabel . '</li>';
+		}
+
+		return '<ul' . _bs_attributes_to_string($aAttr) . '>' . $sLI . '</ul>';
+	}
+}
+
 if(!function_exists('bs_button'))
 {
 	function bs_button($sUrl = FALSE, $sLabel = '', $mButtonClasses = FALSE, $aUserAttr = array())
 	{
 		$bAnchor = ($sUrl ? TRUE : FALSE);
+		$bWipeClasses = ($mButtonClasses === NULL); // SPECIAL CASE: should this button actually have no classes?
 
 		if(!$mButtonClasses)
 		{
@@ -186,6 +304,11 @@ if(!function_exists('bs_button'))
 		$aAttr = array(
 			'class' => 'btn ' . implode(' ', $mButtonClasses),
 		);
+
+		if($bWipeClasses)
+		{
+			$aAttr['class'] = '';
+		}
 
 		$sTag = 'button';
 
