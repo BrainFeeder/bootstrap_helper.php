@@ -8,9 +8,9 @@ A [CodeIgniter](http://www.codeigniter.com/) helper which generates [Bootstrap](
 
 1. [**Download** this repository](https://github.com/gp-greg/bootstrap_helper.php/archive/master.zip) and extract the archive contents.
 
-1. **Copy** `bootstrap_helper.php` into your application's `/helpers` folder.
+2. **Copy** `bootstrap_helper.php` into your application's `/helpers` folder.
 
-2. Either **load** the helper as-needed:
+3. Either **load** the helper as-needed:
 
   ```php
   $this->load->helper('bootstrap');
@@ -77,6 +77,22 @@ echo bs_label('Powerful', FALSE, $attr);
 ---
 
 ####bs_panel()
+Generates a [panel](http://getbootstrap.com/components/#panels), accepting the title, body, and footer as the first three parameters.
+```php
+echo bs_panel(FALSE, 'This panel just has a footer.', "Why can't I just <em>be</em>?");
+// [GREG ADD OUTPUT]
+```
+The fourth parameter can contain any attributes to be applied to the main panel `<div>`.  The fifth can be used to specify the context (primary, success, info, warning, or danger).
+```php
+echo bs_panel('Standout Panel', 'Ooh, what is that?', FALSE, 'primary');
+// [GREG ADD OUTPUT]
+```
+The sixth and final parameter should be `TRUE` if the user has passed in a table or list group as the body (see the [official](http://getbootstrap.com/components/#panels-tables) [docs](http://getbootstrap.com/components/#panels-list-group)) for a seamless panel.
+
+**NOTE**: if you still want to pass in regular panel content, you'll need to wrap it in `<div class="panel-body"></div>` yourself.
+
+---
+
 ####bs_breadcrumbs()
 ####bs_button()
 ####bs_dropdown()
