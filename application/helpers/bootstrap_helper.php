@@ -1,12 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-// "$this" works under light testing, but experience shows that it won't
-// necessarily work in every context, so let's use a $CI variable
-$CI =& get_instance();
-
- // we use the CI form helper's _attributes_to_string()
-$CI->load->helper('form');
-
 if(!function_exists('bs_icon'))
 {
 	function bs_icon($sIcon = FALSE, $aUserAttr = array())
@@ -447,6 +440,13 @@ if(!function_exists('_bs_attributes_to_string'))
 	// then uses the CI form helper.
 	function _bs_attributes_to_string($aAttr, $aUserAttr = array())
 	{
+		// "$this" works under light testing, but experience shows that it won't
+		// necessarily work in every context, so let's use a $CI variable
+		$CI =& get_instance();
+
+		 // we use the CI form helper's _attributes_to_string()
+		$CI->load->helper('form');
+		
 		$aMergedAttr = $aAttr; // will get sent if $aUserAttr is empty
 
 		if(is_array($aUserAttr) && count($aUserAttr))
