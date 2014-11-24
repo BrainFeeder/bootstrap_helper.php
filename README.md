@@ -55,5 +55,5 @@ $autoload['helper'] = array('bootstrap');
 ## Requirements / Compatibility
 
 * PHP >= 5.1.6
-* CodeIgniter 2.x
-* Bootstrap 3.x
+* CodeIgniter >= 2.0
+* Bootstrap >= 3.0
