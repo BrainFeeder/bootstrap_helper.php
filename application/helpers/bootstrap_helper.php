@@ -13,6 +13,51 @@ if(!function_exists('bs_icon'))
 	}
 }
 
+if(!function_exists('bs_alert'))
+{
+	function bs_alert($sMessage = '', $mClasses = FALSE, $bDismissable = FALSE)
+	{
+		$sClose = '';
+
+		if(!$mClasses)
+		{
+			$mClasses = 'info';
+		}
+
+		if($bDismissable)
+		{
+			$sClose = '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;<span class="sr-only">Close</span></span></button>';
+			$mClasses .= ' dismissible';
+		}
+
+		// split into pieces (space-separated), prepend "alert-" to each, and
+		// reattach them to this column's "class"
+		if(is_string($mClasses))
+		{			
+			$mClasses = array_filter(explode(' ', $mClasses));
+		}
+		if(count($mClasses))
+		{
+			foreach($mClasses as $k => $v)
+			{
+				// Add 'col-' to this class if it isn't there already
+				if(substr($v, 0, 6) !== 'alert-') {
+					$v = 'alert-' . $v;
+				}
+
+				$mClasses[$k] = $v;
+			}
+		}
+
+		$aAttr = array(
+			'class' => 'alert ' . implode(' ', $mClasses),
+			'role' => 'alert',
+		);
+
+		return '<div' . _bs_attributes_to_string($aAttr) . '>' . $sClose . $sMessage . '</div>';
+	}	
+}
+
 if(!function_exists('bs_label'))
 {
 	function bs_label($sLabel = '', $mClasses = FALSE, $aUserAttr = array())
