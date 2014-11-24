@@ -93,6 +93,106 @@ if(!function_exists('bs_label'))
 	}
 }
 
+if(!function_exists('bs_list_group'))
+{
+	function bs_list_group($aItems = array())
+	{
+		$CI =& get_instance();
+
+		$sLI = '';
+
+		$aAttr = array(
+			'class' => 'list-group',
+		);
+
+		if(count($aItems))
+		{
+			foreach($aItems as $k => $v)
+			{
+				switch(TRUE)
+				{
+					case is_numeric($k) && is_string($v): // only a value
+						$sLI .= '<div class="list-group-item">' . $v . '</div>';
+						break;
+					case is_string($k) && is_string($v): // a key and a value
+						if(strpos($k, '#') === 0) // if the URL begins with #, let it pass
+						{
+						}
+						elseif(strpos($k, '://') === FALSE) // if it isn't an external URL, run it through site_url()
+						{
+							$CI->load->helper('url');
+
+							$k = site_url($k);
+						}
+						$sLI .= '<a href="' . $k . '" class="list-group-item">'.$v.'</a>';
+						break;
+					case is_array($v): // complex init
+						$aItemAttr = array(
+							'class' => 'list-group-item',
+						);
+
+						$iHeadingLevel = (isset($v['heading_level']) ? intval($v['heading_level']) : 4);
+
+						// if no href was specified but the key is numeric, assume that's it
+						if(!is_numeric($k) && !isset($v['href']))
+						{
+							$v['href'] = $k;
+						}
+
+						$sLabel = '';
+						if(isset($v['label']))
+						{
+							$sLabel = $v['label'];
+							unset($v['label']);
+						}
+
+						if(isset($v['context']))
+						{
+							$aItemAttr['class'] .= ' list-group-item-'.$v['context'];
+							unset($v['context']);
+						}
+
+						if(isset($v['active']))
+						{
+							if($v['active'])
+							{
+								$aItemAttr['class'] .= ' active';
+							}
+
+							unset($v['active']);
+						}
+
+						if(isset($v['href']))
+						{
+							$sTag = 'a';
+						}
+						else
+						{
+							$sTag = 'div';
+						}
+
+						if(isset($v['heading']))
+						{
+							$sLabel = '<h'.$iHeadingLevel._bs_attributes_to_string(array('class' => 'list-group-item-heading')).'>'.$v['heading'].'</h' . $iHeadingLevel . '><div class="list-group-item-text">'.$sLabel.'</div>';
+							unset($v['heading']);
+						}
+
+						if(isset($v['badge']))
+						{
+							$sLabel = '<div class="badge">' . $v['badge'] . '</div>'.$sLabel;
+							unset($v['badge']);
+						}
+
+						$sLI .= '<' . $sTag . _bs_attributes_to_string($aItemAttr, $v) . '>' . $sLabel . '</' . $sTag . '>';
+						break;
+				}
+			}
+		}
+
+		return '<div'._bs_attributes_to_string($aAttr).'>'.$sLI.'</div>';
+	}
+}
+
 if(!function_exists('bs_panel'))
 {
 	function bs_panel($sTitle = '', $sBody = '', $sFooter = '', $aUserAttr = array(), $sContext = FALSE, $bSpecialBody = FALSE)
