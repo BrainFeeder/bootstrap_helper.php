@@ -24,7 +24,7 @@ A [CodeIgniter](http://www.codeigniter.com/) helper which generates [Bootstrap](
 
 ## Installation
 
-1. Have Bootstrap loaded in a CodeIgniter project. [See our wiki page on the topic](https://github.com/gp-greg/bootstrap_helper.php/wiki/Installing-Bootstrap-in-a-CodeIgniter-Project).
+1. **Load** [Bootstrap](http://getbootstrap.com/getting-started/) into a CodeIgniter project.
 
 1. [**Download** this repository](https://github.com/gp-greg/bootstrap_helper.php/archive/master.zip) and extract the archive contents.
 
