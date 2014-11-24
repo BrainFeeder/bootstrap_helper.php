@@ -132,6 +132,7 @@ The last list item will not be linked, and will take the "active" class.
 
 ###bs_button()
 ###bs_dropdown()
+###bs_alert()
 ###bs_nav()
 ###bs_container()
 ###bs_row()
