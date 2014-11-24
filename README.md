@@ -4,6 +4,24 @@ bootstrap_helper.php
 A [CodeIgniter](http://www.codeigniter.com/) helper which generates [Bootstrap](http://getbootstrap.com/)-specific HTML.
 
 
+## Reference
+
+* [bs_icon()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_icon())
+* [bs_label()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_label())
+* [bs_panel()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_panel())
+* [bs_breadcrumbs()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_breadcrumbs())
+* [bs_button()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_button())
+* [bs_dropdown()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_dropdown())
+* [bs_nav()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_nav())
+* [bs_alert()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_alert())
+* [bs_list_group()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_list_group())
+* [bs_progress_bar()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_progress_bar())
+* [bs_container()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_container())
+* [bs_row()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_row())
+* [bs_col()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_col())
+* [bs_clearfix()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_clearfix())
+
+
 ## Installation
 
 1. Have Bootstrap loaded in a CodeIgniter project. [See our wiki page on the topic](https://github.com/gp-greg/bootstrap_helper.php/wiki/Installing-Bootstrap-in-a-CodeIgniter-Project).
@@ -33,25 +51,6 @@ A [CodeIgniter](http://www.codeigniter.com/) helper which generates [Bootstrap](
 
 $autoload['helper'] = array('bootstrap');
 ```
-
-
-## Reference
-
-* [bs_icon()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_icon())
-* [bs_label()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_label())
-* [bs_panel()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_panel())
-* [bs_breadcrumbs()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_breadcrumbs())
-* [bs_button()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_button())
-* [bs_dropdown()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_dropdown())
-* [bs_nav()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_nav())
-* [bs_alert()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_alert())
-* [bs_list_group()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_list_group())
-* [bs_progress_bar()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_progress_bar())
-* [bs_container()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_container())
-* [bs_row()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_row())
-* [bs_col()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_col())
-* [bs_clearfix()](https://github.com/gp-greg/bootstrap_helper.php/wiki/bs_clearfix())
-
 
 ## Requirements / Compatibility
 
