@@ -635,7 +635,7 @@ if(!function_exists('bs_dropdown'))
 		}
 
 		if($bSplit) {
-			$s .= bs_button($sSplitURL, $sLabel, $mButtonClasses);
+			$s .= bs_button($sSplitURL, $sLabel, $mButtonClasses, $aSplitAttr);
 		}
 		$s .= bs_button(($bNavMode ? '#' : FALSE), $sToggleLabel, ($bNavMode ? NULL : $mButtonClasses), array(
 			'class' => 'dropdown-toggle',
