@@ -6,11 +6,13 @@ A [CodeIgniter](http://www.codeigniter.com/) helper which generates [Bootstrap](
 
 ## Installation
 
+1. Have Bootstrap loaded in a CodeIgniter project. [See our wiki page on the topic](https://github.com/gp-greg/bootstrap_helper.php/wiki/Installing-Bootstrap-in-a-CodeIgniter-Project).
+
 1. [**Download** this repository](https://github.com/gp-greg/bootstrap_helper.php/archive/master.zip) and extract the archive contents.
 
-2. **Copy** `bootstrap_helper.php` into your application's `/helpers` folder.
+1. **Copy** `bootstrap_helper.php` into your application's `/helpers` folder.
 
-3. Either **load** the helper as-needed:
+1. Either **load** the helper as-needed:
 
   ```php
   $this->load->helper('bootstrap');
@@ -162,3 +164,9 @@ echo bs_button(FALSE, 'Go', 'primary block', array('id' => 'do_the_thing', 'type
 ###bs_row()
 ###bs_col()
 ###bs_clearfix()
+
+## Requirements / Compatibility
+
+* PHP >= 5.1.6
+* CodeIgniter 2.x
+* Bootstrap 3.x
