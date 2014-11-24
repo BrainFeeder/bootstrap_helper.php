@@ -143,9 +143,9 @@ echo bs_button(FALSE, 'Simple Button');
 
 The third parameter should contain any button classes.  **You can omit the non-unique ("btn-") part of the class names.**  Accepts an array or a space-separated string.
 ```php
-echo bs_button('#clicken', 'Click Here', 'btn-lg');
+echo bs_button('#clicken', 'Click Here', 'lg');
 // <a class="btn btn-lg" href="#clicken">Click Here</a>
-echo bs_button(FALSE, 'Fancy Button', array('btn-warning', 'block', 'sm'));
+echo bs_button(FALSE, 'Fancy Button', array('warning', 'block', 'btn-sm'));
 // <button class="btn btn-warning btn-block btn-sm">Fancy Button</button>
 ```
 The fourth and final parameter can be an array containing additional element attributes.
