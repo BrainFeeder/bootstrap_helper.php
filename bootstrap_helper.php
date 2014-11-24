@@ -2,8 +2,16 @@
 
 if(!function_exists('bs_navbar'))
 {
-	function bs_navbar($mClasses = FALSE)
+	function bs_navbar($mClasses = FALSE, $mHeader = '', $mCollapseLeft = '', $mCollapseRight = '', $bFluid = FALSE)
 	{
+		$sUniqueID = 'navbar-collapse-'.strtolower(random_string('alnum', 6));
+		$sCloseButton = '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#' . $sUniqueID . '">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>';
+
 		if(!$mClasses)
 		{
 			$mClasses = 'default';
@@ -33,7 +41,14 @@ if(!function_exists('bs_navbar'))
 			'role' => 'navigation',
 		);
 
-		return '<nav' . _bs_attributes_to_string($aAttr) . '></nav>';
+		if($mHeader)
+		{
+			$sNavInner = '<div class="navbar-header">' . $sCloseButton . $mHeader . '</div>';
+		}
+
+		$sNavInner = '<div class="container' . ($bFluid ? '-fluid' : '') . '">' . $sNavInner . '</div>';
+
+		return '<nav' . _bs_attributes_to_string($aAttr) . '>' . $sNavInner . '</nav>';
 	}
 }
 
