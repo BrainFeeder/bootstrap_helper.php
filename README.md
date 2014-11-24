@@ -130,7 +130,29 @@ echo bs_breadcrumbs(array(
 ```
 The last list item will not be linked, and will take the "active" class.
 
+---
+
 ###bs_button()
+Generates a [button](http://getbootstrap.com/css/#buttons).  The first and second parameters should contain the **URL** and **inner button HTML** respectively.  If your button is not a link, pass `FALSE` as the URL and a `<button>` element will be used instead.
+```php
+echo bs_button('awesome_page', 'Go to the Awesome Page', 'info lg block');
+// <a class="btn btn-link" href="http://{{your_url}}/index.php/awesome_page">Go to the Awesome Page</a>
+echo bs_button(FALSE, 'Simple Button');
+// <button class="btn btn-link">Simple Button</button>
+```
+
+The third parameter should contain any button classes.  **You can omit the non-unique ("btn-") part of the class names.**  Accepts an array or a space-separated string.
+```php
+echo bs_button('#clicken', 'Click Here', 'btn-lg');
+// <a class="btn btn-lg" href="#clicken">Click Here</a>
+echo bs_button(FALSE, 'Fancy Button', array('btn-warning', 'block', 'sm'));
+// <button class="btn btn-warning btn-block btn-sm">Fancy Button</button>
+```
+The fourth and final parameter can be an array containing additional element attributes.
+```php
+echo bs_button(FALSE, 'Go', 'primary block', array('id' => 'do_the_thing', 'type' => 'submit'));
+// <button class="btn btn-primary btn-block" id="do_the_thing" type="submit">Go</button>
+```
 ###bs_dropdown()
 ###bs_nav()
 ###bs_alert()
