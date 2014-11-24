@@ -135,6 +135,7 @@ The last list item will not be linked, and will take the "active" class.
 ###bs_nav()
 ###bs_alert()
 ###bs_list_group()
+###bs_progress_bar()
 ###bs_container()
 ###bs_row()
 ###bs_col()
