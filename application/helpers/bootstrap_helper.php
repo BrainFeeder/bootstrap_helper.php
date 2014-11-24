@@ -224,14 +224,16 @@ if(!function_exists('bs_nav'))
 				$sLabel = bs_dropdown($k, $v, FALSE, FALSE, TRUE);
 				$sUrl = FALSE;
 
-				if(is_string($mActiveLink) && count($v))
+				if(count($v))
 				{
 					foreach($v as $kk => $vv)
 					{
 						$sHref = FALSE;
+						$can_be_active = TRUE;
 						if(is_string($vv) && preg_match('/^\-+$/', $vv))
 						{
 							// this is a separator so do nothing
+							$can_be_active = FALSE;
 						}
 						elseif(strpos($kk, '://') === FALSE)
 						{
@@ -245,7 +247,12 @@ if(!function_exists('bs_nav'))
 							$sHref = $kk;
 						}
 
-						if($mActiveLink === $sHref)
+						if(is_array($vv) && !isset($vv['href']))
+						{
+							$can_be_active = FALSE;
+						}
+
+						if($can_be_active && is_string($mActiveLink) && $mActiveLink === $sHref)
 						{
 							$aItemAttr['class'] .= ' active';
 						}
