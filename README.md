@@ -135,7 +135,7 @@ The last list item will not be linked, and will take the "active" class.
 ###bs_button()
 Generates a [button](http://getbootstrap.com/css/#buttons).  The first and second parameters should contain the **URL** and **inner button HTML** respectively.  If your button is not a link, pass `FALSE` as the URL and a `<button>` element will be used instead.
 ```php
-echo bs_button('awesome_page', 'Go to the Awesome Page', 'info lg block');
+echo bs_button('awesome_page', 'Go to the Awesome Page');
 // <a class="btn btn-link" href="http://{{your_url}}/index.php/awesome_page">Go to the Awesome Page</a>
 echo bs_button(FALSE, 'Simple Button');
 // <button class="btn btn-link">Simple Button</button>
