@@ -1,5 +1,42 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+if(!function_exists('bs_navbar'))
+{
+	function bs_navbar($mClasses = FALSE)
+	{
+		if(!$mClasses)
+		{
+			$mClasses = 'default';
+		}
+
+		// split into pieces (space-separated), prepend "navbar-" to each, and
+		// reattach them to this column's "class"
+		if(is_string($mClasses))
+		{			
+			$mClasses = array_filter(explode(' ', $mClasses));
+		}
+		if(count($mClasses))
+		{
+			foreach($mClasses as $k => $v)
+			{
+				// Add 'col-' to this class if it isn't there already
+				if(substr($v, 0, 7) !== 'navbar-') {
+					$v = 'navbar-' . $v;
+				}
+
+				$mClasses[$k] = $v;
+			}
+		}
+
+		$aAttr = array(
+			'class' => 'navbar ' . implode(' ', $mClasses),
+			'role' => 'navigation',
+		);
+
+		return '<nav' . _bs_attributes_to_string($aAttr) . '></nav>';
+	}
+}
+
 if(!function_exists('bs_icon'))
 {
 	function bs_icon($sIcon = FALSE, $aUserAttr = array())
