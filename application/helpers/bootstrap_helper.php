@@ -193,6 +193,85 @@ if(!function_exists('bs_list_group'))
 	}
 }
 
+if(!function_exists('bs_progress_bar'))
+{
+	function bs_progress_bar($mPercentage = 0, $mClasses = FALSE, $sLabel = FALSE)
+	{
+		// SPECIAL CASE: stacked progress bars
+		if(is_array($mPercentage))
+		{
+			$aBars = $mPercentage;
+			$sInner = '';
+			foreach($aBars as $b)
+			{
+				$new_bar = call_user_func_array('bs_progress_bar', $b);
+				$new_bar = substr($new_bar, strlen('<div class="progress">'));
+				$new_bar = substr($new_bar, 0, strlen($new_bar)-strlen('</div>')); // remove the wrapper
+
+				$sInner .= $new_bar;
+			}
+		}
+		else // normal cases
+		{	
+			$bShowLabel = ($sLabel !== FALSE && $sLabel !== NULL);
+
+			if(substr($mPercentage,-1) === '%') // passed in a straight percentage string
+			{
+				$mPercentage = floatval($mPercentage);
+			}
+			elseif(is_float($mPercentage) && $mPercentage < 1) // passed in a decimal representation, probably
+			{
+				$mPercentage = round($mPercentage*100);
+			}
+			elseif(is_numeric($mPercentage))
+			{
+				$mPercentage = round(min($mPercentage, 100));
+			}
+
+			if(!is_string($sLabel))
+			{
+				$sLabel = $mPercentage . '%';
+			}
+
+			if(!$bShowLabel)
+			{
+				$sLabel = '<span class="sr-only">' . $sLabel . '</span>';
+			}
+
+			if(!is_array($mClasses))
+			{
+				$mClasses = array_filter(explode(' ', $mClasses));
+			}
+
+			if(is_array($mClasses) && count($mClasses) > 0)
+			{
+				foreach($mClasses as $k => $v)
+				{
+					// Add 'progress-bar-' to this class if it isn't there already
+					if($v !== 'active' && substr($v, 0, 13) !== 'progress-bar-') {
+						$v = 'progress-bar-' . $v;
+					}
+
+					$mClasses[$k] = $v;
+				}
+			}
+
+			$aAttr = array(
+				'class' => 'progress-bar ' . implode(' ', $mClasses),
+				'role' => 'progressbar',
+				'aria-valuenow' => $mPercentage,
+				'aria-valuemin' => 0,
+				'aria-valuemax' => 100,
+				'style' => 'width:'.$mPercentage.'%',
+			);
+
+			$sInner = '<div'._bs_attributes_to_string($aAttr).'>' . $sLabel . '</div>';
+		}
+
+		return '<div class="progress">' . $sInner . '</div>';
+	}
+}
+
 if(!function_exists('bs_panel'))
 {
 	function bs_panel($sTitle = '', $sBody = '', $sFooter = '', $aUserAttr = array(), $sContext = FALSE, $bSpecialBody = FALSE)
