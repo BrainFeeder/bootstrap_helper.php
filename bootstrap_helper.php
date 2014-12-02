@@ -453,7 +453,11 @@ if(!function_exists('bs_nav'))
 			$mActiveLink = site_url($mActiveLink);
 		}
 
-		if(!$mClasses)
+		if($mClasses === NULL)
+		{
+			$mClasses = array();
+		}
+		elseif(!$mClasses)
 		{
 			$mClasses = 'tabs';
 		}
@@ -528,9 +532,16 @@ if(!function_exists('bs_nav'))
 							$sHref = $kk;
 						}
 
-						if(is_array($vv) && !isset($vv['href']))
+						if(is_array($vv))
 						{
-							$can_be_active = FALSE;
+							if(!isset($vv['href']))
+							{
+								$can_be_active = FALSE;
+							}
+							else
+							{
+								$sHref = $vv['href'];
+							}
 						}
 
 						if($can_be_active && is_string($mActiveLink) && $mActiveLink === $sHref)
