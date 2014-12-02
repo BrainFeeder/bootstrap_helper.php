@@ -4,7 +4,10 @@ if(!function_exists('bs_navbar'))
 {
 	function bs_navbar($mClasses = FALSE, $mHeader = '', $mCollapseLeft = '', $mCollapseRight = '', $bFluid = FALSE)
 	{
-		$sUniqueID = 'navbar-collapse-'.strtolower(random_string('alnum', 6));
+		// Generate a probably-unique (for this request) ID for collapsing this nav
+		$sRandStr = substr(str_shuffle("0123456789bcdfghjklmnpqrstvwxz"), 0, 6);
+		$sUniqueID = 'navbar-collapse-'.$sRandStr;
+
 		$sCloseButton = '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#' . $sUniqueID . '">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
