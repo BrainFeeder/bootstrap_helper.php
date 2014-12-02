@@ -4,11 +4,7 @@ bootstrap_helper.php
 A [CodeIgniter](http://www.codeigniter.com/) helper which generates [Bootstrap](http://getbootstrap.com/)-specific HTML.
 
 
-## Reference
-
-*[quick-start and full reference will go here, probably]*
-
-**This helper is in active development**, and only [some documentation](https://github.com/gbrock/bootstrap_helper.php/wiki/History) is currently available.
+**This helper is in active development**; [some documentation](https://github.com/gbrock/bootstrap_helper.php/wiki/History) is currently available.
 
 
 ## Installation
