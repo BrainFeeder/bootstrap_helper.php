@@ -2,8 +2,11 @@
 
 if(!function_exists('bs_navbar'))
 {
-	function bs_navbar($mClasses = FALSE, $mHeader = '', $mCollapseLeft = '', $mCollapseRight = '', $bFluid = FALSE)
+	function bs_navbar($mClasses = FALSE, $mHeader = '', $mCollapsible = '', $bFluid = FALSE)
 	{
+		// The default "modes"
+		$aNavStyles = array('default', 'inverse');
+
 		// Generate a probably-unique (for this request) ID for collapsing this nav
 		$sRandStr = substr(str_shuffle("0123456789bcdfghjklmnpqrstvwxz"), 0, 6);
 		$sUniqueID = 'navbar-collapse-'.$sRandStr;
@@ -15,22 +18,28 @@ if(!function_exists('bs_navbar'))
 							<span class="icon-bar"></span>
 						</button>';
 
-		if(!$mClasses)
-		{
-			$mClasses = 'default';
-		}
-
 		// split into pieces (space-separated), prepend "navbar-" to each, and
 		// reattach them to this column's "class"
 		if(is_string($mClasses))
 		{			
 			$mClasses = array_filter(explode(' ', $mClasses));
 		}
+		elseif(!is_array($mClasses))
+		{
+			$mClasses = array();
+		}
+
+		// if a style class was not passed, give it the default
+		if(!in_array($aNavStyles, $mClasses))
+		{
+			$mClasses[] = $aNavStyles[key($aNavStyles)];
+		}
+
+		// Add 'navbar-' to this class if it isn't there already
 		if(count($mClasses))
 		{
 			foreach($mClasses as $k => $v)
 			{
-				// Add 'col-' to this class if it isn't there already
 				if(substr($v, 0, 7) !== 'navbar-') {
 					$v = 'navbar-' . $v;
 				}
@@ -46,9 +55,35 @@ if(!function_exists('bs_navbar'))
 
 		$sNavInner = '';
 
+		if(is_array($mCollapsible))
+		{
+			$sNavInner .= bs_nav($mCollapsible, NULL, FALSE, array('class' => 'navbar-nav'));
+		}
+		elseif(is_string($mCollapsible))
+		{
+			$sNavInner .= $mCollapsible;
+		}
+
 		if($mHeader)
 		{
-			$sNavInner = '<div class="navbar-header">' . $sCloseButton . $mHeader . '</div>';
+			// If a simple (non-HTML) string was passed as the header,
+			// make it a link to this application's homepage
+			if($mHeader == strip_tags($mHeader))
+			{
+				$mHeader = anchor(FALSE,$mHeader,array('class'=>'navbar-brand'));
+			}
+
+			if(!$mCollapsible)
+			{
+				// we don't need the collapse button if there's nothing to collapse
+				$sCloseButton = '';
+			}
+			else
+			{
+				$sNavInner = '<div class="collapse navbar-collapse" id="' . $sUniqueID . '">' . $sNavInner . '</div>';
+			}
+
+			$sNavInner = '<div class="navbar-header">' . $sCloseButton . $mHeader . '</div>' . $sNavInner;
 		}
 
 		$sNavInner = '<div class="container' . ($bFluid ? '-fluid' : '') . '">' . $sNavInner . '</div>';
