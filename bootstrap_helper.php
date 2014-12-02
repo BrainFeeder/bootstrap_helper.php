@@ -565,7 +565,7 @@ if(!function_exists('bs_button'))
 
 		if(!$mButtonClasses)
 		{
-			$mButtonClasses = 'link';
+			$mButtonClasses = 'default';
 		}
 
 		if(is_string($mButtonClasses))
