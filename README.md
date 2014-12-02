@@ -42,6 +42,3 @@ $autoload['helper'] = array('bootstrap');
 * PHP >= 5.1.6
 * CodeIgniter >= 2.0
 * Bootstrap >= 3.0
-
-## On the Wiki
-* [History](https://github.com/gbrock/bootstrap_helper.php/wiki/History)
