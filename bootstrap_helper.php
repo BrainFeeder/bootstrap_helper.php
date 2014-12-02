@@ -437,7 +437,7 @@ if(!function_exists('bs_breadcrumbs'))
 
 if(!function_exists('bs_nav'))
 {
-	function bs_nav($aItems = array(), $mClasses = FALSE, $mActiveLink = TRUE)
+	function bs_nav($aItems = array(), $mClasses = FALSE, $mActiveLink = TRUE, $aPassedAttr = array())
 	{
 		$CI =& get_instance();
 		if($mActiveLink === TRUE) // look at the current page URL
@@ -555,7 +555,7 @@ if(!function_exists('bs_nav'))
 			$sLI .= '<li' . _bs_attributes_to_string($aItemAttr, $aUserAttr) . '>' . $sLabel . '</li>';
 		}
 
-		return '<ul' . _bs_attributes_to_string($aAttr) . '>' . $sLI . '</ul>';
+		return '<ul' . _bs_attributes_to_string($aAttr, $aPassedAttr) . '>' . $sLI . '</ul>';
 	}
 }
 
