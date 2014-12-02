@@ -16,6 +16,7 @@ A [CodeIgniter](http://www.codeigniter.com/) helper which generates [Bootstrap](
 * bs_alert()
 * bs_list_group()
 * bs_progress_bar()
+* bs_navbar()
 * bs_container()
 * bs_row()
 * bs_col()
