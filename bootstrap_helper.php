@@ -41,6 +41,8 @@ if(!function_exists('bs_navbar'))
 			'role' => 'navigation',
 		);
 
+		$sNavInner = '';
+
 		if($mHeader)
 		{
 			$sNavInner = '<div class="navbar-header">' . $sCloseButton . $mHeader . '</div>';
