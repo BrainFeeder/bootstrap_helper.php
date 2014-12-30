@@ -416,19 +416,18 @@ if(!function_exists('bs_breadcrumbs'))
 				throw new Exception('Passed label must be a string');
 			}
 
-			// if this link is empty, or numeric, 
-			// assume this is a link to the homepage
-			if(empty($sUrl) || is_numeric($sUrl)) {
+			// 
+			
+			if(empty($sUrl) || is_numeric($sUrl)) // if this link is empty, or numeric, assume link to homepage
+			{
 				$CI->load->helper('url');
 
 				$sUrl = site_url();
 			}
-
-			
-			if(strpos($sUrl, '#') === 0) // if the URL begins with #, let it pass
+			elseif(strpos($sUrl, '#') === 0) // the URL begins with #
 			{
 			}
-			elseif(strpos($v, '://') === FALSE) // if it isn't an external URL, run it through site_url()
+			elseif(strpos($v, '://') === FALSE) // it isn't an external URL
 			{
 				$CI->load->helper('url');
 
